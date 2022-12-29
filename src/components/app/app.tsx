@@ -1,12 +1,20 @@
 import './app.css';
 import LiveTable from '../live-table/live-table';
 
+import { useDispatch, useSelector } from '../../services/store';
+
+import {connect as connectLiveTable, disconnect as disconnectLiveTable} from '../../services/live-table/actions';
+import { WebsocketStatus } from '../../types/live-table';
+
+export const LIVE_TABLE_SERVER_URL = 'ws://localhost:3001';
+
 const App = () => {
-  const { table, status } = {table: [], status: 0 } 
-  const isDisconnected = false
+  const dispatch = useDispatch()
+  const { table, status } = useSelector(state => state.liveTable);
+  const isDisconnected = status !== WebsocketStatus.OFFLINE;
   
   let className = 'app__status';
-  /*switch (status) {
+  switch (status) {
     case WebsocketStatus.ONLINE:
       className += ' app__status--online';
       break;
@@ -16,7 +24,10 @@ const App = () => {
     case WebsocketStatus.CONNECTING:
       className += ' app__status--connecting';
       break;
-  }*/
+  }
+
+  const connect = () => dispatch(connectLiveTable(LIVE_TABLE_SERVER_URL));
+  const disconnect = () => dispatch(disconnectLiveTable());
 
   return (
     <div className="app">
@@ -27,11 +38,13 @@ const App = () => {
       <div>
         <button
           className="app__button app__button--connect"
+          onClick={connect}
           disabled={isDisconnected}>
             Connect
         </button>
         <button
           className="app__button app__button--disconnect"
+          onClick={disconnect}
           disabled={!isDisconnected}>
             Disconnect
         </button>
