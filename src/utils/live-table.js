@@ -4,13 +4,6 @@ export const WebsocketStatus  = {
   OFFLINE: 'OFFLINE'
 }
 
-export interface TableRow {
-  id: number;
-  text: string;
-}
-
-export type LiveTable = Array<TableRow>;
-
 export const LiveTableActionType = {
   DATA: 'data',
   INSERT: 'insert',
