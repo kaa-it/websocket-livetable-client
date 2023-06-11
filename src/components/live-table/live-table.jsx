@@ -1,11 +1,6 @@
-import { LiveTable as LiveTableData} from '../../types/live-table';
 import './live-table.css';
 
-type TLiveTableProps = {
-  table: LiveTableData;
-}
-
-const LiveTable = (props: TLiveTableProps) => {
+const LiveTable = (props) => {
   const { table } = props;
   return (
     <table className="live-table">
