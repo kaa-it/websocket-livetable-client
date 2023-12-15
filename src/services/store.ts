@@ -43,9 +43,8 @@ export const store = configureStore({
   },
 });
 
-//export type AppDispatch = typeof store.dispatch;
-
 export type AppActions = TLiveTableActions;
+
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,

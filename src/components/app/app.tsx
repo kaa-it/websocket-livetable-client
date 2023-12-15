@@ -11,7 +11,7 @@ export const LIVE_TABLE_SERVER_URL = 'ws://localhost:3001';
 const App = () => {
   const dispatch = useDispatch()
   const { table, status } = useSelector(state => state.liveTable);
-  const isDisconnected = status !== WebsocketStatus.OFFLINE;
+  const isDisconnected = status !== WebsocketStatus.ONLINE;
   
   let className = 'app__status';
   switch (status) {
@@ -39,13 +39,13 @@ const App = () => {
         <button
           className="app__button app__button--connect"
           onClick={connect}
-          disabled={isDisconnected}>
+          disabled={!isDisconnected}>
             Connect
         </button>
         <button
           className="app__button app__button--disconnect"
           onClick={disconnect}
-          disabled={!isDisconnected}>
+          disabled={isDisconnected}>
             Disconnect
         </button>
       </div>
