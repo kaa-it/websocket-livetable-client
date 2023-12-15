@@ -27,12 +27,12 @@ const App = () => {
       <div>
         <button
           className="app__button app__button--connect"
-          disabled={isDisconnected}>
+          disabled={!isDisconnected}>
             Connect
         </button>
         <button
           className="app__button app__button--disconnect"
-          disabled={!isDisconnected}>
+          disabled={isDisconnected}>
             Disconnect
         </button>
       </div>
